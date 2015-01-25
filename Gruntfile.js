@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
 
-  "use strict";
+  'use strict';
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -9,8 +9,8 @@ module.exports = function(grunt) {
         banner: '/* <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
       build: {
-        src: '<%= pkg.name %>.js',
-        dest: '<%= pkg.name %>.min.js'
+        src: 'src/<%= pkg.name %>.js',
+        dest: 'build/<%= pkg.name %>.min.js'
       }
     }
   });
