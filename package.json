@@ -1,0 +1,24 @@
+{
+  "name": "mastermind",
+  "version": "0.1.0",
+  "description": "Web Components Application Framework",
+  "main": "mastermind.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RafaelCasuso/mastermind.git"
+  },
+  "keywords": [
+    "framework",
+    "web",
+    "components"
+  ],
+  "author": "Rafael Casuso",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RafaelCasuso/mastermind/issues"
+  },
+  "homepage": "https://github.com/RafaelCasuso/mastermind"
+}
