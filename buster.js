@@ -12,5 +12,14 @@ config['Browser'] = {
   tests: [
     'tests/**/*.js'
   ],
-  testHelpers: ['tests/helper.js']
+  testHelpers: ['tests/helper.js'],
+  "buster-istanbul": {
+    outputDirectory: "coverage",
+    format: "lcov",
+    sources: 'src/mastermind.js',
+    excludes: ["**/*.json", "bower_components/**/*.js"]
+  },
+  extensions: [
+    require('buster-istanbul')
+  ]
 };
