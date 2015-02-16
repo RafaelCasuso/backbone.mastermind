@@ -45,6 +45,7 @@ module.exports = function(grunt) {
 
 
   // Tasks.
-  grunt.registerTask('default', [ 'jshint', 'buster', 'uglify', 'coveralls']);
+  grunt.registerTask('default', [ 'jshint', 'buster', 'uglify']);
+  grunt.registerTask('report', [ 'jshint', 'buster', 'uglify', 'coveralls']);
 
 };

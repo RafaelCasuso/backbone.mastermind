@@ -4,7 +4,7 @@
   "description": "Backbone Application Framework",
   "main": "mastermind.js",
   "scripts": {
-    "test": "grunt --verbose"
+    "test": "grunt report --verbose"
   },
   "repository": {
     "type": "git",
