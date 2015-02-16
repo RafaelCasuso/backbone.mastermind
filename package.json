@@ -1,10 +1,10 @@
 {
   "name": "mastermind",
   "version": "0.1.0",
-  "description": "Web Components Application Framework",
+  "description": "Backbone Application Framework",
   "main": "mastermind.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "grunt travis --verbose"
   },
   "repository": {
     "type": "git",
@@ -12,18 +12,23 @@
   },
   "keywords": [
     "framework",
-    "web",
-    "components"
+    "application",
+    "backbonejs"
   ],
-  "author": "Rafael Casuso",
+  "author": {
+    "name": "Rafael Casuso",
+    "email": "rafaelcasusoromate@gmail.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/RafaelCasuso/mastermind/issues"
   },
   "homepage": "https://github.com/RafaelCasuso/mastermind",
   "devDependencies": {
+    "buster": "^0.7.18",
     "docco": "^0.6.3",
     "grunt": "^0.4.5",
+    "grunt-buster": "^0.3.2",
     "grunt-contrib-jshint": "^0.11.0",
     "grunt-contrib-uglify": "^0.7.0",
     "phantomjs": "^1.9.13"

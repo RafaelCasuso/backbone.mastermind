@@ -12,13 +12,28 @@ module.exports = function(grunt) {
         src: 'src/<%= pkg.name %>.js',
         dest: 'build/<%= pkg.name %>.min.js'
       }
+    },
+    buster: {
+      test: {
+        'config': 'buster.js',
+        'color': 'none',
+        'config-group': 'Browser'
+      },
+      server: {
+        'port': '1111'
+      }
+    },
+    jshint: {
+      all: ['grunt.js', 'src/**/*.js', 'tests/**/*.js']
     }
   });
 
-  // Load the plugin that provides the "uglify" task.
+  //Loading grunt plugins
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-buster');
 
-  // Default task(s).
-  grunt.registerTask('default', ['uglify']);
+  // Tasks.
+  grunt.registerTask('default', [ 'jshint', 'buster', 'uglify']);
 
 };
