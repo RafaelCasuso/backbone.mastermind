@@ -25,6 +25,12 @@ module.exports = function(grunt) {
     },
     jshint: {
       all: ['grunt.js', 'src/**/*.js', 'tests/**/*.js']
+    },
+    coveralls: {
+      options: {
+        src: 'coverage/lcov.info',
+        force: false
+      }
     }
   });
 
@@ -32,8 +38,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-buster');
+  grunt.loadNpmTasks('grunt-coveralls');
+
 
   // Tasks.
-  grunt.registerTask('default', [ 'jshint', 'buster', 'uglify']);
+  grunt.registerTask('default', [ 'jshint', 'buster', 'uglify', 'coveralls']);
 
 };
