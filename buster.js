@@ -16,7 +16,6 @@ config['Browser'] = {
   "buster-istanbul": {
     outputDirectory: "coverage",
     format: "lcov",
-    sources: 'src/mastermind.js',
     excludes: ["**/*.json", "bower_components/**/*.js"]
   },
   extensions: [
