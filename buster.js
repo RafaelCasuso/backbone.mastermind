@@ -24,10 +24,3 @@ config['Browser'] = {
     require('buster-istanbul')
   ]
 };
-
-config['Node'] = {
-  environment: 'node',
-  tests: [
-    'tests/node/*.js'
-  ]
-};
