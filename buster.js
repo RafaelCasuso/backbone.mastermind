@@ -2,11 +2,13 @@ var config = exports;
 
 config['Browser'] = {
   environment: 'browser',
-  sources: [
+  libs: [
     'bower_components/jquery/dist/jquery.js',
     'bower_components/underscore/underscore.js',
     'bower_components/backbone/backbone.js',
-    'bower_components/backbone.radio/build/backbone.radio.js',
+    'bower_components/backbone.radio/build/backbone.radio.js'
+  ],
+  sources: [
     'src/mastermind.js'
   ],
   tests: [
@@ -16,9 +18,16 @@ config['Browser'] = {
   "buster-istanbul": {
     outputDirectory: "coverage",
     format: "lcov",
-    excludes: ["**/*.json", "bower_components/**/*.js"]
+    excludes: ["**/*.json"]
   },
   extensions: [
     require('buster-istanbul')
+  ]
+};
+
+config['Node'] = {
+  environment: 'node',
+  tests: [
+    'tests/node/*.js'
   ]
 };
