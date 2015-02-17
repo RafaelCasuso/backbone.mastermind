@@ -27,12 +27,13 @@
 
   Mastermind.noConflict = function () {
     root.Mastermind = previousMastermind;
-    root.Mm = previousMastermind;
+    root.Mm = previousMm;
     return this;
   };
 
   //Declare index of models
   Mastermind.Models = {};
+  Mastermind.Views = {};
 
   //Wrap extend to add new extended objects to indexes
   var extend = function (properties, classProperties) {
@@ -54,9 +55,17 @@
   };
 
   Mastermind.Model = Backbone.Model.extend({
-      //Data binding with view
       constructor: function (options) {
         Backbone.Model.apply(this, arguments);
+      }
+    },
+    {
+      extend: extend
+    });
+
+  Mastermind.View = Backbone.View.extend({
+      constructor: function (options) {
+        Backbone.View.apply(this, arguments);
       }
     },
     {
