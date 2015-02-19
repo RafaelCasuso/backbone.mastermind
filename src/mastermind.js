@@ -58,20 +58,15 @@
       constructor: function (options) {
         Backbone.Model.apply(this, arguments);
       }
-    },
-    {
-      extend: extend
     });
 
   Mastermind.View = Backbone.View.extend({
       constructor: function (options) {
         Backbone.View.apply(this, arguments);
       }
-    },
-    {
-      extend: extend
     });
 
+  Mastermind.Model.extend = Mastermind.View.extend = extend;
 
   return Mastermind;
 

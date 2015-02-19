@@ -12,9 +12,33 @@ config['Browser'] = {
     'src/mastermind.js'
   ],
   tests: [
-    'tests/**/*.js'
+    'tests/*.js'
   ],
   testHelpers: ['tests/helper.js'],
+  "buster-istanbul": {
+    outputDirectory: "coverage",
+    format: "lcov",
+    excludes: ["**/*.json"]
+  },
+  extensions: [
+    require('buster-istanbul')
+  ]
+};
+
+config['Node'] = {
+  environment: 'node',
+  tests: [
+    'tests/node/*.js'
+  ],
+  libs: [
+    'bower_components/jquery/dist/jquery.js',
+    'node_modules/underscore/underscore.js',
+    'node_modules/backbone/backbone.js',
+    'node_modules/backbone.radio/build/backbone.radio.js'
+  ],
+  sources:[
+    'src/mastermind.js'
+  ],
   "buster-istanbul": {
     outputDirectory: "coverage",
     format: "lcov",
