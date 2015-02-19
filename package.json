@@ -25,6 +25,8 @@
   },
   "homepage": "https://github.com/RafaelCasuso/mastermind",
   "devDependencies": {
+    "backbone": "^1.1.2",
+    "backbone.radio": "^0.9.0",
     "buster": "^0.7.18",
     "buster-istanbul": "*",
     "docco": "^0.6.3",
@@ -33,6 +35,7 @@
     "grunt-contrib-jshint": "^0.11.0",
     "grunt-contrib-uglify": "^0.7.0",
     "grunt-coveralls": "^1.0.0",
-    "phantomjs": "^1.9.13"
+    "phantomjs": "^1.9.13",
+    "underscore": "^1.7.0"
   }
 }
