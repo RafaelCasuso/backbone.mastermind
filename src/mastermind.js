@@ -75,7 +75,7 @@
     }
   };
 
-  _.extend(Mastermind.Class.prototype, Backbone.Events);
+  _.extend(Mastermind.Object.prototype, Backbone.Events);
 
   var Model = Mastermind.Model = Backbone.Model.extend({
     constructor: function (options) {
@@ -89,7 +89,7 @@
     }
   });
 
-  var Region = Mastermind.Region = Mastermind.Class.extend({
+  var Region = Mastermind.Region = Mastermind.Object.extend({
     constructor: function (options) {
       options = options || {};
       this.$el = options.$el;
@@ -196,7 +196,7 @@
   });
 
 
-  var App = Mastermind.Application = Mastermind.Class.extend({
+  var App = Mastermind.Application = Mastermind.Object.extend({
     //App constructor
     constructor: function (options) {
       options = options || {};
@@ -217,9 +217,9 @@
     }
   });
 
-  Mastermind.Class.extend = Mastermind.Region.extend = Mastermind.Model.extend = Mastermind.View.extend = Mastermind.Layout.extend = extend;
+  Mastermind.Object.extend = Mastermind.Region.extend = Mastermind.Model.extend = Mastermind.View.extend = Mastermind.Layout.extend = extend;
 
-  Mastermind.Class.triggerMethod = Mastermind.Region.triggerMethod = Mastermind.Model.triggerMethod = Mastermind.View.triggerMethod = Mastermind.Layout.triggerMethod = triggerMethod;
+  Mastermind.Object.triggerMethod = Mastermind.Region.triggerMethod = Mastermind.Model.triggerMethod = Mastermind.View.triggerMethod = Mastermind.Layout.triggerMethod = triggerMethod;
 
   return Mastermind;
 
