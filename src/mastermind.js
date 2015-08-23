@@ -75,7 +75,7 @@
     }
   };
 
-  _.extend(Class.prototype, Backbone.Events);
+  _.extend(Mastermind.Class.prototype, Backbone.Events);
 
   Mastermind.Class.extend = extend;
 
