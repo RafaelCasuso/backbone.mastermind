@@ -58,9 +58,9 @@
     return Backbone.Model.extend.apply(this, arguments);
   };
 
-  var triggerMethod = function(event) {
+  var triggerMethod = function (event) {
     var args = [].slice.call(arguments, 1),
-      methodName = event.split(":").reduce(function(acc, el) {
+      methodName = event.split(":").reduce(function (acc, el) {
         return acc + el[0].toUpperCase() + el.slice(1);
       }, "on");
     this.trigger.apply(this, [event].concat(args));
@@ -69,31 +69,33 @@
     }
   };
 
-  var Class = Mastermind.Class = function() {
-    if (this.initialize) { this.initialize.apply(this, arguments); }
+  var Class = Mastermind.Class = function () {
+    if (this.initialize) {
+      this.initialize.apply(this, arguments);
+    }
   };
 
   _.extend(Class.prototype, Backbone.Events);
 
   var Model = Mastermind.Model = Backbone.Model.extend({
-      constructor: function (options) {
-        Backbone.Model.apply(this, arguments);
-      }
-    });
+    constructor: function (options) {
+      Backbone.Model.apply(this, arguments);
+    }
+  });
 
   var View = Mastermind.View = Backbone.View.extend({
-      constructor: function (options) {
-        Backbone.View.apply(this, arguments);
-      }
-    });
+    constructor: function (options) {
+      Backbone.View.apply(this, arguments);
+    }
+  });
 
   var Region = Mastermind.Region = Class.extend({
-    constructor: function(options) {
+    constructor: function (options) {
       options = options || {};
       this.$el = options.$el;
       Region.__super__.constructor.apply(this, arguments);
     },
-    setElement: function($el) {
+    setElement: function ($el) {
       this.$el = $el;
       if (this.currentView) {
         this.currentView.$el.detach();
@@ -103,13 +105,16 @@
         this._pendingView = undefined;
       }
     },
-    delegateEvents: function() {
+    delegateEvents: function () {
       if (this.currentView) {
         this.currentView.delegateEvents();
       }
     },
-    show: function(view) {
-      if (!this.$el || this.$el.length === 0) { this._pendingView = view; return; }
+    show: function (view) {
+      if (!this.$el || this.$el.length === 0) {
+        this._pendingView = view;
+        return;
+      }
       if (this.currentView) {
         this.currentView.triggerMethod("remove");
         this.close();
@@ -119,60 +124,62 @@
       this.currentView = view;
       this.currentView.triggerMethod("show");
     },
-    close: function() {
-      this.currentView && this.currentView.remove();
+    close: function () {
+      if (this.currentView) {
+        this.currentView.remove();
+      }
     },
-    open: function(view) {
+    open: function (view) {
       this.$el.empty().append(view.el);
     }
   });
 
   var Layout = Mastermind.Layout = Mastermind.View.extend({
-      constructor: function(options) {
-        options = options || {};
-        var regions = options.regions || this.regions || {};
-        this.regions = {};
-        this._regions = [];
-        _.each(regions, this.addRegion, this);
-        Layout.__super__.constructor.apply(this, arguments);
-      },
-      regionType: Region,
-      addRegions: function(regions) {
-        _.each(regions, this.addRegion, this);
-      },
-      addRegion: function(value, name) {
-        var RegionType = value.regionType || this.regionType,
-          selector = (typeof(value) === "string")? value : value.selector,
-          region = new RegionType({$el: this.el? this.$(selector) : null});
-        this._regions.push({region: region, selector: selector});
-        this.regions[name] = region;
-      },
-      reattachRegions: function() {
-        _.chain(this._regions)
-          .map(function(regionData) {
-            return {regionData: regionData, $el: this.$(regionData.selector)};
-          }, this)
-          .each(function(data) {
-            data.regionData.region.setElement(data.$el);
-          });
-
-      },
-      render: function() {
-        Layout.__super__.render.apply(this, arguments);
-        this.reattachRegions();
-        this.trigger("render");
-        return this;
-      },
-      setElement: function() {
-        Layout.__super__.setElement.apply(this, arguments);
-        this.reattachRegions();
-      },
-      delegateEvents: function() {
-        Layout.__super__.delegateEvents.apply(this, arguments);
-        _.each(this._regions, function(regionData) {
-          regionData.region.delegateEvents();
+    constructor: function (options) {
+      options = options || {};
+      var regions = options.regions || this.regions || {};
+      this.regions = {};
+      this._regions = [];
+      _.each(regions, this.addRegion, this);
+      Layout.__super__.constructor.apply(this, arguments);
+    },
+    regionType: Region,
+    addRegions: function (regions) {
+      _.each(regions, this.addRegion, this);
+    },
+    addRegion: function (value, name) {
+      var RegionType = value.regionType || this.regionType,
+        selector = (typeof(value) === "string") ? value : value.selector,
+        region = new RegionType({$el: this.el ? this.$(selector) : null});
+      this._regions.push({region: region, selector: selector});
+      this.regions[name] = region;
+    },
+    reattachRegions: function () {
+      _.chain(this._regions)
+        .map(function (regionData) {
+          return {regionData: regionData, $el: this.$(regionData.selector)};
+        }, this)
+        .each(function (data) {
+          data.regionData.region.setElement(data.$el);
         });
-      }
+
+    },
+    render: function () {
+      Layout.__super__.render.apply(this, arguments);
+      this.reattachRegions();
+      this.trigger("render");
+      return this;
+    },
+    setElement: function () {
+      Layout.__super__.setElement.apply(this, arguments);
+      this.reattachRegions();
+    },
+    delegateEvents: function () {
+      Layout.__super__.delegateEvents.apply(this, arguments);
+      _.each(this._regions, function (regionData) {
+        regionData.region.delegateEvents();
+      });
+    }
 
   });
 
@@ -191,19 +198,21 @@
 
   var App = Mastermind.Application = Mastermind.Class.extend({
     //App constructor
-    constructor: function(options){
+    constructor: function (options) {
       options = options || {};
+      var name = options.name || "App" + (_.size(Mastermind.Apps) + 1);
+      Mastermind.Apps[name] = this;
       App.__super__.constructor.apply(this, arguments);
     }
   });
 
   _.extend(App.prototype, Backbone.Events, {
     //App methods
-    _initCommunications: function(){
+    _initCommunications: function () {
       this.channels = {};
       this.channels.appData = Backbone.Radio.channel("appData");
     },
-    replyGeneralData: function(){
+    replyGeneralData: function () {
       return this.data;
     }
   });
