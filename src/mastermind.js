@@ -69,13 +69,13 @@
     }
   };
 
-  var Class = Mastermind.Class = function () {
+  Mastermind.Class = function () {
     if (this.initialize) {
       this.initialize.apply(this, arguments);
     }
   };
 
-  _.extend(Class.prototype, Backbone.Events);
+  _.extend(Mastermind.Class.prototype, Backbone.Events);
 
   var Model = Mastermind.Model = Backbone.Model.extend({
     constructor: function (options) {
@@ -89,7 +89,7 @@
     }
   });
 
-  var Region = Mastermind.Region = Class.extend({
+  var Region = Mastermind.Region = Mastermind.Class.extend({
     constructor: function (options) {
       options = options || {};
       this.$el = options.$el;
